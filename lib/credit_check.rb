@@ -17,8 +17,7 @@ class CreditCheck
   def doubler
     doubled = []
     reverser.each_with_index do |num, i|
-      if i.even?
-        # binding.pry
+      if i.odd?
         if (num * 2) >= 10
           doubled << (num*2).to_s.split("").map(&:to_i).reduce(&:+)
         else
@@ -33,6 +32,15 @@ class CreditCheck
 
   def verifier
     doubler.reduce(&:+)
+  end
+
+  def validator
+    verifier % 10 == 0 ? true : false
+  end
+
+  def printer
+    return "Number is valid!" if validator == true 
+    return "Number is invalid!" if validator == false
   end
 
 end
